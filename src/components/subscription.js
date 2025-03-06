@@ -34,6 +34,9 @@ export default function SubscriptionForm() {
     console.log(values); // You can replace this with an API call
   }
 
+  // check the form condition
+  const { isSubmitting, isValid } = form.formState;
+
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       {/* ✅ Wrap the form with the `Form` component */}
@@ -85,6 +88,7 @@ export default function SubscriptionForm() {
           {/* ✅ Submit Button */}
           <Button
             type="submit"
+            disabled={!isValid || isSubmitting}
             className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-all"
           >
             Subscribe
