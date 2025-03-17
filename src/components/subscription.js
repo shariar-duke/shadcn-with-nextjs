@@ -1,5 +1,6 @@
 "use client";
 
+import { sendEmail } from "@/app/actions/email";
 import {
   Form,
   FormControl,
@@ -30,8 +31,12 @@ export default function SubscriptionForm() {
   });
 
   // ✅ Handle form submission
-  function onSubmit(values) {
-    console.log(values); // You can replace this with an API call
+  async function onSubmit(values) {
+    try {
+      await sendEmail(values);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   // check the form condition
