@@ -1,9 +1,10 @@
+import { replaceMongoIdInArray } from "../lib/transform";
 import { Subscriber } from "../models/subs-model";
 
 export async function getSubscribers() {
   try {
     const subscribers = await Subscriber.find({}).lean();
-    return subscribers;
+    return replaceMongoIdInArray(subscribers);
   } catch (e) {
     throw new Error(e.message);
   }
