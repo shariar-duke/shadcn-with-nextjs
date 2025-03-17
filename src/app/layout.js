@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
           <Navbar />
           <main>{children}</main>
         </ThemeProvider>
-        <Toaster richColors position="bottom-right" />
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

@@ -18,6 +18,8 @@ export async function sendEmail(formData) {
       };
 
       await Subscriber.create(subscribersPayload);
+    } else {
+      throw new Error(`${email} subscribed alrady`);
     }
   } catch (e) {
     throw new Error(e.message);
