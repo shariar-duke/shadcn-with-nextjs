@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -13,27 +12,22 @@ export default function Subscribers() {
       {/* Card Header with Title & Description */}
       <CardHeader className="text-center">
         <CardTitle className="text-xl font-bold text-gray-800">
-          Subscriber Stats
+          Subscriber Added
         </CardTitle>
-        <CardDescription className="text-gray-500">
-          Track your latest subscribers here
+        <CardDescription className="text-gray-400">
+          Please Check you email
         </CardDescription>
       </CardHeader>
 
       {/* Card Content */}
       <CardContent className="flex flex-col items-center space-y-4">
         <p className="text-lg font-semibold text-gray-700">
-          Total Subscribers: 1,250
+          Wow!! Shariar Duke Subscribed
         </p>
-        <p className="text-sm text-gray-500">Last updated: 2 hours ago</p>
+        <p className="text-sm text-gray-500">
+          Last Subscription at : 12:36:00{" "}
+        </p>
       </CardContent>
-
-      {/* Card Footer */}
-      <CardFooter className="flex justify-center">
-        <button className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-all">
-          View More
-        </button>
-      </CardFooter>
     </Card>
   );
 }
