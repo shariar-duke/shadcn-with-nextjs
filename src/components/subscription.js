@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "./ui/button";
 
@@ -34,8 +35,9 @@ export default function SubscriptionForm() {
   async function onSubmit(values) {
     try {
       await sendEmail(values);
+      toast.success(`${values.fullName} subscribed successfully`);
     } catch (e) {
-      console.error(e);
+      toast.error(e.message);
     }
   }
 
