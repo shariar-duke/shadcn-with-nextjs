@@ -1,5 +1,10 @@
 "use server";
+import EmailTemplate from "@/components/email-template";
+import { Resend } from "resend";
 import { Subscriber } from "../../../models/subs-model";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function sendEmail(formData) {
   try {
     const email = formData["email"];
@@ -18,6 +23,16 @@ export async function sendEmail(formData) {
       };
 
       await Subscriber.create(subscribersPayload);
+
+      const message = `Dear ${fullName} thank you for subscribing to Shariar's Newsletter . The door toward abundance of knowledge is now open. Enjoy `;
+
+      await resend.emails.send({
+        from: "onboarding@resend.dev", // ✅ Use Resend's default sender email
+        to: email,
+        subject:
+          "Congratulations !!! You have subscribed to Shariar's Newsletter",
+        react: EmailTemplate({ message }),
+      });
     } else {
       throw new Error(`${email} subscribed alrady`);
     }
