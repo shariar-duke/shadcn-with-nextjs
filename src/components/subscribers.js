@@ -1,33 +1,27 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function Subscribers() {
+import { getSubscribers } from "../../queries";
+
+export default async function Subscribers() {
+  const subscribers = await getSubscribers();
+  console.log("All the subscribers are", subscribers);
   return (
-    <Card className="max-w-sm mx-auto p-5 shadow-lg rounded-xl border border-gray-200 bg-white mt-4">
-      {/* Card Header with Title & Description */}
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl font-bold text-gray-800">
-          Subscriber Added
-        </CardTitle>
-        <CardDescription className="text-gray-400">
-          Please Check you email
-        </CardDescription>
-      </CardHeader>
-
-      {/* Card Content */}
-      <CardContent className="flex flex-col items-center space-y-4">
-        <p className="text-lg font-semibold text-gray-700">
-          Wow!! Shariar Duke Subscribed
-        </p>
-        <p className="text-sm text-gray-500">
-          Last Subscription at : 12:36:00{" "}
-        </p>
-      </CardContent>
-    </Card>
+    <div>
+      {subscribers.map((sub) => (
+        <Card
+          key={sub.id}
+          className="max-w-sm mx-auto p-5 shadow-lg rounded-xl border border-gray-200 bg-white mt-4"
+        >
+          {/* Card Content */}
+          <CardContent className="flex flex-col items-center space-y-4">
+            <p className="my-2">Wow!! {sub.name} Subscribed</p>
+            <p>
+              Subscribed on :
+              {new Intl.DateTimeFormat("en-us").format(sub.createdAt)}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   );
 }
