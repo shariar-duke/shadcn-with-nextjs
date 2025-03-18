@@ -3,6 +3,8 @@ import EmailTemplate from "@/components/email-template";
 import { Resend } from "resend";
 import { Subscriber } from "../../../models/subs-model";
 
+import { revalidatePath } from "next/cache";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendEmail(formData) {
@@ -36,6 +38,8 @@ export async function sendEmail(formData) {
     } else {
       throw new Error(`${email} subscribed alrady`);
     }
+
+    revalidatePath("/");
   } catch (e) {
     throw new Error(e.message);
   }
