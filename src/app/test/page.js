@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+import CourseComment from "./components/add-post";
+import AForm from "./components/form";
+
 export default function TestPage() {
   async function createInvoice(formData) {
     "use server";
@@ -16,15 +18,8 @@ export default function TestPage() {
   }
   return (
     <>
-      <form className="m-4" action={createInvoice}>
-        <input type="hidden" name="customerId" value="001" />
-        <input
-          type="number"
-          className="border-black border mx-2  rounded"
-          name="amount"
-        />
-        <Button type="submit">Create Invoice</Button>
-      </form>
+      <AForm createInvoice={createInvoice} />
+      <CourseComment postId="P001" />
     </>
   );
 }
