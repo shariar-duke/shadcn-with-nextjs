@@ -1,3 +1,4 @@
+"use client";
 import { updateUser } from "@/app/actions/user";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
